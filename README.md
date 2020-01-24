@@ -31,3 +31,7 @@ Primeiros Passos:
 
 #1 - Instalar o bootstrap, o jquery e o popper.js
 npm install --save bootstrap jquery popper.js
+
+#2 - Instalar o modulo de animações
+npm install --save @angular/animations
+npm install --save web-animations-js
