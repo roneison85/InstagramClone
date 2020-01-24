@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, style, state, transition, animate } from '@angular/animations';
+import { Imagem } from './imagem.model';
 
 @Component({
   selector: 'app-banner',
@@ -22,8 +23,17 @@ import { trigger, style, state, transition, animate } from '@angular/animations'
 export class BannerComponent implements OnInit {
 
   public estado: string = 'visivel';
+  public imagens: Imagem[] = [
+    { estado: 'escondido', url: '/assets/banner-acesso/img_1.png' },
+    { estado: 'escondido', url: '/assets/banner-acesso/img_2.png' },
+    { estado: 'visivel', url: '/assets/banner-acesso/img_3.png' },
+    { estado: 'escondido', url: '/assets/banner-acesso/img_4.png' },
+    { estado: 'escondido', url: '/assets/banner-acesso/img_5.png' }
+  ];
 
-  constructor() { }
+  constructor() { 
+    console.log(this.imagens);
+  }
 
   ngOnInit() {
   }
