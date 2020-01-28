@@ -14,7 +14,7 @@ import { Imagem } from './imagem.model';
       state('visivel', style({
         opacity: 1
       })),
-      transition('escondido <=> visivel', animate('1s ease-in')),
+      transition('escondido <=> visivel', animate('1s ease-in'))
       //transition('escondido => visivel', animate('1s ease-in')),
       //transition('visivel => escondido', animate('1s ease-in'))
     ])
@@ -24,22 +24,35 @@ export class BannerComponent implements OnInit {
 
   public estado: string = 'visivel';
   public imagens: Imagem[] = [
-    { estado: 'escondido', url: '/assets/banner-acesso/img_1.png' },
+    { estado: 'visivel', url: '/assets/banner-acesso/img_1.png' },
     { estado: 'escondido', url: '/assets/banner-acesso/img_2.png' },
-    { estado: 'visivel', url: '/assets/banner-acesso/img_3.png' },
+    { estado: 'escondido', url: '/assets/banner-acesso/img_3.png' },
     { estado: 'escondido', url: '/assets/banner-acesso/img_4.png' },
     { estado: 'escondido', url: '/assets/banner-acesso/img_5.png' }
   ];
 
   constructor() { 
-    console.log(this.imagens);
+    
   }
 
   ngOnInit() {
+    setTimeout(() => this.logicaRotacao(), 2000);
   }
 
-  toggleAnimation() {
-    this.estado = this.estado === 'escondido' ? 'visivel' : 'escondido';
+  public logicaRotacao(): void {
+    let indice: number;
+
+    for(let i: number = 0; i <= 4; i++){
+      if(this.imagens[i].estado === 'visivel') {
+        // oculta a imagem
+        this.imagens[i].estado = 'escondido';
+        indice = i == 4 ? 0 : i + 1;
+        break;
+      }
+    }
+    // exibir a proxima imagem
+    this.imagens[indice].estado = 'visivel';
+    setTimeout(() => this.logicaRotacao(), 2000);
   }
 
 }
