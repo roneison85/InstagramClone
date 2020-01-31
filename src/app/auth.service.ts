@@ -1,8 +1,14 @@
 import { Usuario } from './acesso/usuario.model';
-import { Inject } from '@angular/core';
+import * as firebase from 'firebase';
 
 export class AuthService {
     public cadastrarUsuario(usuario: Usuario): void {
-        console.log('Chegamos até aqui...');
+        firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
+            .then((response: any) => {
+                console.log(response);
+            })
+            .catch((error: Error) => {
+                console.log(error);
+            })
     }
 }
