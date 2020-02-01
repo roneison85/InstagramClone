@@ -5,7 +5,11 @@ export class AuthService {
     public cadastrarUsuario(usuario: Usuario): void {
         firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
             .then((response: any) => {
-                console.log(response);
+
+                delete usuario.senha;
+                
+                firebase.database().ref(`usuario_detalhe/${btoa(usuario.email)}`)
+                    .set( usuario );
             })
             .catch((error: Error) => {
                 console.log(error);
