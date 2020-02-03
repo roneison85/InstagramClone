@@ -1,9 +1,14 @@
 import { Usuario } from './acesso/usuario.model';
 import * as firebase from 'firebase';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
+@Injectable()
 export class AuthService {
 
     public token_id: string; 
+
+    constructor(private router: Router){}
 
     public cadastrarUsuario(usuario: Usuario): Promise<any> {
         return firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.senha)
@@ -25,7 +30,7 @@ export class AuthService {
                 firebase.auth().currentUser.getIdToken()
                     .then((idToken: string) => {
                         this.token_id = idToken;
-                        console.log(this.token_id);
+                        this.router.navigate(['/home'])
                     })
             })
             .catch((error: Error) => console.log(error))
