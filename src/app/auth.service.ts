@@ -35,4 +35,8 @@ export class AuthService {
             })
             .catch((error: Error) => console.log(error))
     }
+
+    public autenticado(): boolean {
+        return this.token_id !== undefined;
+    }
 }
