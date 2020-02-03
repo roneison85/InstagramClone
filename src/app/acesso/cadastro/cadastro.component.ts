@@ -35,7 +35,7 @@ export class CadastroComponent implements OnInit {
       this.formulario.value.email,
       this.formulario.value.nome_completo,
       this.formulario.value.nome_usuario,
-      this.formulario.value.email
+      this.formulario.value.senha
     );
 
     this.authService.cadastrarUsuario(usuario);
